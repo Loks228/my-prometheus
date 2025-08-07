@@ -33,8 +33,8 @@ Follow these simple steps to start monitoring:
 3.  **Optional: Desktop Shortcut for Linux (.desktop file)**
 
     ```bash
-    cp Prometheus.desktop /home/Prometheus.desktop
-    chmod +x /home/Prometheus.desktop
+    cp Prometheus.desktop ~/
+    chmod +x ~/Prometheus.desktop
     ```
     !Now you can move it from your home directory to your desktop!
 
