@@ -23,8 +23,8 @@ Follow these simple steps to start monitoring:
     ```
 2.  **Run all services:**
     ```bash
-    chmod +x start_prometheus.sh "+Execute"
-    ./start_prometheus.sh "Opening Prometheus with Grafana UI in browser..."
+    chmod +x start_prometheus.sh # +Execute
+    ./start_prometheus.sh #Opening Prometheus with Grafana UI in browser...
 
     docker-compose up -d
     ```
