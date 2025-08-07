@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest #This tells Docker which container image to use. Think of it as the core software package for your application.
+    container_name: prometheus #This gives the container a friendly name so you can easily identify and manage it.
+    ports:
+      - "9090:9090" #This line maps a port from your computer to a port inside the container. It allows you to access the Prometheus web UI from your browser at http://localhost:9090
+    volumes:
+      - ./config:/etc/prometheus/ #This is a volume mount. It connects a folder on your computer (./config) to a folder inside the container (/etc/prometheus/). This is how the container gets its configuration files, and it ensures your configs are not lost when the container is stopped.
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml' #This is the command that Docker runs to start the application inside the container, specifying its configuration file
+    restart: always # This ensures the container automatically restarts if it ever crashes or if the host machine reboots.
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/config.yml
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+    restart: always
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    ports:
+      - "9100:9100"
+    restart: always
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana_config/custom.ini:/etc/grafana/grafana.ini
+    restart: always
+
+volumes:
+  grafana_data: #This section defines persistent storage volumes. For example, grafana_data is a named volume that stores all of Grafana's data (dashboards, users, etc.) so it persists even if the Grafana container is removed and recreated.
