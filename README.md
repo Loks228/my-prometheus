@@ -31,10 +31,11 @@ Follow these simple steps to start monitoring:
     This will pull the necessary images, run the containers, and configure them.
 
 3.  **Optional: Desktop Shortcut for Linux (.desktop file)**
-```bash
-cp Prometheus.desktop /home/Prometheus.desktop
-chmod +x /home/Prometheus.desktop
-    ```   
+
+    ```bash
+    cp Prometheus.desktop /home/Prometheus.desktop
+    chmod +x /home/Prometheus.desktop
+    ```
     !Now you can move it from your home directory to your desktop!
 
 ---
