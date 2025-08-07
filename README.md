@@ -26,7 +26,7 @@ Follow these simple steps to start monitoring:
     chmod +x start_prometheus.sh # +Execute
     ./start_prometheus.sh #Opening Prometheus with Grafana UI in browser...
 
-    docker-compose up -d
+    docker-compose up -d #It builds, creates, and starts the containers for all the services defined in your docker-compose.yml file.
     ```
     This will pull the necessary images, run the containers, and configure them.
 
