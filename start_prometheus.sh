@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Starting Prometheus services with Grafana..."
-docker-compose up -d
+docker compose up -d
 
 echo "Opening Prometheus UI in browser..."
 open http://localhost:9090

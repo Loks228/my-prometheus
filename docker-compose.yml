@@ -37,7 +37,6 @@ services:
       - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./grafana_config/custom.ini:/etc/grafana/grafana.ini
     restart: always
 
 volumes:

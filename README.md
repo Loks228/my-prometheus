@@ -64,4 +64,8 @@ To add a new exporter (e.g., for a database), simply add its service to `docker-
 
 ```bash
 # Example: Restart the stack after making changes
+<<<<<<< HEAD
 docker-compose up -d --force-recreate
+=======
+docker compose up -d --force-recreate
+>>>>>>> 7168153 (Fix)
