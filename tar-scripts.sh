@@ -5,25 +5,48 @@ set -e
 echo "Dowload all service"
 sleep 1
 
-wget https://github.com/prometheus/prometheus/releases/download/v2.48.0/prometheus-2.48.0.linux-amd64.tar.gz
-wget https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz
-wget https://github.com/prometheus/alertmanager/releases/download/v0.28.1/alertmanager-0.28.1.linux-amd64.tar.gz
-wget https://dl.grafana.com/enterprise/release/grafana-enterprise-12.1.0.linux-amd64.tar.gz
 
-AMD64 = ("prometheus-3.5.0.linux-amd64" "alertmanager-0.28.1.linux-amd64" "node_exporter-1.7.0.linux-amd64" "grafana-v12.1.0")
 
-for TAR in $AMD64; do 
-    if [ -d "$TAR"];then
-        echo "You have $TAR - skip unboxing"
+DOWLOADS=( "prometheus-3.5.0.linux-amd64.tar.gz" "alertmanager-0.28.1.linux-amd64.tar.gz" "node_exporter-1.7.0.linux-amd64.tar.gz" "grafana-enterprise-12.1.0.linux-amd64.tar.gz" )
 
-    elif [-d "$TAR" == "grafana-v12.1.0"]; then
-        echo "Unboxing grafana"
-        tar xvfz grafana-enterprise-12.1.0.linux-amd64.tar.gz
-
+for TAR in "${DOWLOADS[@]}"; do 
+    if [ -f $TAR ]; then
+        echo "You have $TAR - skip Dowload"
     else
-        echo "Unboxing $TAR"
-        tar xvfz $TAR.tar.gr
-
+        case "$TAR" in
+            ("prometheus-3.5.0.linux-amd64.tar.gz")
+                echo "Downloading Prometheus..."
+                wget "https://github.com/prometheus/prometheus/releases/download/v3.5.0/$TAR"
+                tar xvfz $TAR
+                echo "Delete $TAR"
+                rm $TAR
+                ;;
+            ("alertmanager-0.28.1.linux-amd64.tar.gz")
+                echo "Downloading Alertmanager..."
+                wget "https://github.com/prometheus/alertmanager/releases/download/v0.28.1/$TAR"
+                tar xvfz $TAR
+                echo "Delete $TAR"
+                rm $TAR
+                ;;
+            ("node_exporter-1.7.0.linux-amd64.tar.gz")
+                echo "Downloading Node Exporter..."
+                wget "https://github.com/prometheus/node_exporter/releases/download/v1.7.0/$TAR"
+                tar xvfz $TAR
+                echo "Delete $TAR"
+                rm $TAR
+                ;;
+            ("grafana-enterprise-12.1.0.linux-amd64.tar.gz")
+                echo "Downloading Grafana..."
+                wget https://dl.grafana.com/enterprise/release/$TAR
+                tar -zxvf $TAR
+                echo "Delete $TAR"
+                rm $TAR
+                ;;
+            ("*.*")
+                echo "Unknown file specified: $TAR"
+                exit 1
+                ;;
+        esac
     fi
 
 done
@@ -31,4 +54,5 @@ done
 echo "Unboxing done"
 echo "====================================="
 echo "Runing services"
+sleep 1
 ./start_prometheus.sh
