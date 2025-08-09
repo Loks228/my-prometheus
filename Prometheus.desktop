@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Prometheus
-Comment=Launch Prometheus Docker stack
-Exec=/home/kolya/Documents/GitHub/my-prometheus/start_prometheus.sh   #This file must be in your home directory, be here /home!
-Icon=utilities-system-monitor
-Terminal=true
-Path=/home/kolya/Documents/GitHub/my-prometheus #Write your PATH before bash script
