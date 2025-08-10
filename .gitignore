@@ -1,0 +1,11 @@
+
+# Игнорировать все файлы и папки внутри директории data
+data/*
+
+alertmanager-0.28.1.linux-amd64/*
+
+grafana-v12.1.0/*
+
+node_exporter-1.7.0.linux-amd64/*
+
+prometheus-3.5.0.linux-amd64/*

@@ -34,6 +34,7 @@ for TAR in "${DOWLOADS[@]}"; do
                 tar xvfz $TAR
                 echo "Delete $TAR"
                 rm $TAR
+                mv prometheus.yml prometheus-3.5.0.linux-amd64/prometheus.yml
                 ;;
             ("grafana-enterprise-12.1.0.linux-amd64.tar.gz")
                 echo "Downloading Grafana..."
