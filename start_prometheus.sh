@@ -18,7 +18,7 @@ if [ $Start == "y" ]; then
     ./node_exporter-1.7.0.linux-amd64/node_exporter &
 
     # Alertmanager
-    ./alertmanager-0.28.1.linux-amd64/alertmanager --config.file=alertmanager.yml &
+    ./alertmanager-0.28.1.linux-amd64/alertmanager --config.file=alertmanager-0.28.1.linux-amd64/alertmanager.yml &
 
     # Grafana
     ./grafana-v12.1.0/bin/grafana-server --homepath="./grafana-v12.1.0" & 

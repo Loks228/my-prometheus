@@ -1,0 +1,11 @@
+groups:
+- name: memory_alerts
+  rules:
+  - alert: HighMemoryUsage
+    expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 50
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High RAM usage {{ $labels.instance }}"
+      description: "RAM usage has exceeded 50%. Current value: {{ $value }}%."

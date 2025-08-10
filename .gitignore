@@ -9,3 +9,7 @@ grafana-v12.1.0/*
 node_exporter-1.7.0.linux-amd64/*
 
 prometheus-3.5.0.linux-amd64/*
+
+alert_bot.py
+
+bot_venv/*
