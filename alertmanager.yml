@@ -1,0 +1,19 @@
+global:
+  slack_api_url: 'https://hooks.slack.com/services/xxxxx/yyyyyy/xxxxxxxx'
+
+route:
+  group_by: ['alertname']
+  receiver: 'multi-channel'
+  
+receivers:
+  - name: 'multi-channel'
+    slack_configs:
+      - channel: '#alerts'
+        send_resolved: true
+        username: 'Prometheus'
+        icon_emoji: ':warning:'
+    telegram_configs:
+      - bot_token: 'bot-token'
+        chat_id: 123456 # replace by your chat id
+        message: 'Alert'
+        send_resolved: true
