@@ -1,4 +1,4 @@
-
+.env
 # Игнорировать все файлы и папки внутри директории data
 data/*
 
@@ -10,6 +10,4 @@ node_exporter-1.7.0.linux-amd64/*
 
 prometheus-3.5.0.linux-amd64/*
 
-alert_bot.py
-
-bot_venv/*
+blackbox_exporter-0.27.0.linux-amd64/*

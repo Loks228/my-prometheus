@@ -1,0 +1,12 @@
+# rules.yml
+groups:
+- name: blackbox_alerts
+  rules:
+  - alert: WebsiteDown
+    expr: probe_success{job="blackbox"} == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Сайт {{ $labels.instance }} недоступен"
+      description: "Проверка для {{ $labels.instance }} была безуспешной в течение 1 минуты."
