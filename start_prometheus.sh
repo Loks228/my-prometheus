@@ -12,7 +12,13 @@ fuser -k 9100/tcp || true # Node Exporter
 read -p "For Starting Prometheus services with Grafana: Write y; " Start
 if [ $Start == "y" ]; then
     # Prometheus
-    ./prometheus-3.5.0.linux-amd64/prometheus --config.file=configs/prometheus.yml &
+    ./prometheus-3.5.0.linux-amd64/prometheus     --config.file=configs/prometheus.yml \
+    --web.enable-remote-write-receiver \
+    --web.enable-lifecycle \
+    --web.enable-admin-api \
+    --storage.tsdb.path="data/" \
+    --web.console.templates="./prometheus-3.5.0.linux-amd64/consoles" \
+    --web.console.libraries="./prometheus-3.5.0.linux-amd64/console_libraries" &
 
     # Node Exporter
     ./node_exporter-1.7.0.linux-amd64/node_exporter &
@@ -23,8 +29,9 @@ if [ $Start == "y" ]; then
     #Blackbox
     ./blackbox_exporter-0.27.0.linux-amd64/blackbox_exporter --config.file=configs/blackbox.yml &
 
+
     # Grafana
-    ./grafana-v12.1.0/bin/grafana-server --homepath="./grafana-v12.1.0" & 
+    ./grafana-v12.1.0/bin/grafana-server --homepath="./grafana-v12.1.0" --config.file=configs/garafana.ini & 
 
     sleep 5
 

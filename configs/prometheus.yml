@@ -4,6 +4,10 @@ global:
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
+# Remote write configuration
+remote_write:
+  - url: "http://localhost:9090/api/v1/write"
+
 # Alertmanager configuration
 alerting:
   alertmanagers:
@@ -34,24 +38,33 @@ scrape_configs:
         labels:
           app: "prometheus"
 
+  - job_name: "node_exporter"
+    static_configs:
+      - targets: ["localhost:9100"]
+        labels:
+          app: "node_exporter"
+
   - job_name: 'blackbox'
     metrics_path: /probe
     params:
-      module: [http_2xx]  # Проверка, что HTTP-запрос возвращает 2xx статус
+      module: [http_2xx]  # Verification, what HTTP-requests get back 2xx status code
     static_configs:
       - targets:
-        #- http://example.com # Замените на URL, который вы хотите мониторить
-        - https://google.com
+        #- http://example.com # Сhange on URL, which your want monitoring
+        - http://localhost:3000 # Example URL, which you want monitoring
+        - http://localhost:9093
+        - http://localhost:9090
+        - http://localhost:9100
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: localhost:9115  # Адрес, где запущен Blackbox Exporter
+        replacement: localhost:9115  # Adress, where up Blackbox Exporter
 
-  - job_name: "node_exporter"
+  - job_name: 'grafana-app'
+    # metrics_path default  where is /metrics
+    metrics_path: /metrics
     static_configs:
-      - targets: ["localhost:9100"]
-        labels:
-          app: "node_exporter"
+      - targets: ['localhost:3000']  # Chenges on adress and port your web application

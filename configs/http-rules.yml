@@ -1,6 +1,6 @@
-# rules.yml
+# http-rules.yml
 groups:
-- name: blackbox_alerts
+- name: Http_alerts
   rules:
   - alert: WebsiteDown
     expr: probe_success{job="blackbox"} == 0
@@ -8,5 +8,5 @@ groups:
     labels:
       severity: critical
     annotations:
-      summary: "Сайт {{ $labels.instance }} недоступен"
-      description: "Проверка для {{ $labels.instance }} была безуспешной в течение 1 минуты."
+      summary: "Web-Sait {{ $labels.instance }} is broked "
+      description: "Check for {{ $labels.instance }} been no results over time 1 minute."
