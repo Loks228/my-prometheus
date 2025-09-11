@@ -1,0 +1,14 @@
+global:
+  slack_api_url: 'https://hooks.slack.com/services/T09A4RNUPGW/B09AGDCA5Q9/XXXXXXXXXX'  # Replace with your Slack webhook URL
+
+route:
+  group_by: ['alertname']
+  receiver: 'multi-channel'
+  
+receivers:
+  - name: 'multi-channel'
+    slack_configs:
+      - channel: '#alerts'
+        send_resolved: true
+        username: 'Prometheus'
+        icon_emoji: ':warning:'

@@ -7,7 +7,7 @@ sleep 1
 
 
 
-DOWLOADS=( "prometheus-3.5.0.linux-amd64.tar.gz" "alertmanager-0.28.1.linux-amd64.tar.gz" "node_exporter-1.7.0.linux-amd64.tar.gz" "grafana-enterprise-12.1.0.linux-amd64.tar.gz" )
+DOWLOADS=( "prometheus-3.5.0.linux-amd64.tar.gz" "alertmanager-0.28.1.linux-amd64.tar.gz" "node_exporter-1.7.0.linux-amd64.tar.gz" "grafana-enterprise-12.1.0.linux-amd64.tar.gz" "blackbox_exporter-0.27.0.linux-amd64.tar.gz")
 
 for TAR in "${DOWLOADS[@]}"; do 
     if [ -f $TAR ]; then
@@ -34,9 +34,6 @@ for TAR in "${DOWLOADS[@]}"; do
                 tar xvfz $TAR
                 echo "Delete $TAR"
                 rm $TAR
-                mv prometheus.yml prometheus-3.5.0.linux-amd64/prometheus.yml
-                mv rules.yml prometheus-3.5.0.linux-amd64/rules.yml
-                mv second-rules.yml prometheus-3.5.0.linux-amd64/second-rules.yml  
                 ;;
             ("grafana-enterprise-12.1.0.linux-amd64.tar.gz")
                 echo "Downloading Grafana..."
@@ -45,6 +42,11 @@ for TAR in "${DOWLOADS[@]}"; do
                 echo "Delete $TAR"
                 rm $TAR
                 ;;
+            ("blackbox_exporter-0.27.0.linux-amd64.tar.gz")
+                echo "Dowload blackbox_exporter"
+                wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.27.0/$TAR
+                tar -zxvf $TAR
+                echo "Delete $TAR"
             ("*.*")
                 echo "Unknown file specified: $TAR"
                 exit 1
