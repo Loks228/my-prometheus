@@ -1,0 +1,28 @@
+groups:
+  - name: system-alerts
+    rules:
+      - alert: HighCPUUsage
+        expr: avg(rate(process_cpu_seconds_total[1m])) > 0.8
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High CPU load"
+          description: "CPU load exceeds 80% for 1 minute"
+
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.65
+        labels:
+          severity: critical
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage exceeds 65% for 15 sec"
+
+      - alert: HighHTTPRequests
+        expr: rate(http_requests_total[1m]) > 1
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Large number of HTTP requests"
+          description: "The number of HTTP requests exceeds 1/sec for 1 minute"
