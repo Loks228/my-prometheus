@@ -4,10 +4,6 @@ global:
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
-# Remote write configuration
-remote_write:
-  - url: "http://localhost:9090/api/v1/write"
-
 # Alertmanager configuration
 alerting:
   alertmanagers:
