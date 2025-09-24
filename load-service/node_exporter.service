@@ -1,0 +1,9 @@
+[Unit]
+Description=Node_exporter Service
+After=network.target
+
+[Service]
+ExecStart=/opt/prometheus-stack/bin/node_exporter-1.7.0.linux-amd64/node_exporter
+Restart=always
+[Install]
+WantedBy=multi-user.target

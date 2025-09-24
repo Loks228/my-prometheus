@@ -1,0 +1,9 @@
+[Unit]
+Description=Alertmanager Service
+After=network.target
+
+[Service]
+ExecStart=/opt/prometheus-stack/bin/alertmanager-0.28.1.linux-amd64/alertmanager --config.file=/opt/prometheus-stack/bin/configs/alertmanager.yml
+Restart=always
+[Install]
+WantedBy=multi-user.target

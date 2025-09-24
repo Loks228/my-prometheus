@@ -1,0 +1,9 @@
+[Unit]
+Description=Grafana Service
+After=network.target
+
+[Service]
+ExecStart=/opt/prometheus-stack/bin/grafana-v12.1.0/bin/grafana-server --homepath=/opt/prometheus-stack/bin/grafana-v12.1.0
+Restart=always
+[Install]
+WantedBy=multi-user.target
