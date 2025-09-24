@@ -1,8 +1,6 @@
-# my-prometheus
-
-# Prometheus & Grafana Docker Monitoring Stack
-
----
+# Monitoring Stack
+Prometheus + Grafana + Alertmanager + Node_exporter + Black_box
+---------------------------------------------
 
 ### How to Run
 Follow these simple steps to start monitoring:
@@ -12,16 +10,22 @@ Follow these simple steps to start monitoring:
     git clone https://github.com/Loks228/my-prometheus.git
     cd my-prometheus
     ```
+2.  **Configs and alert:**
+    ```bash
+    #All configs storage directory /configs
+    #Alert for Prometheus in /configs
+    #Do you need aler rules tune in Grafana
+        
 2.  **Run all services:**
     ```bash
     chmod +x *.sh # +Execute
 
     # First script
-    ./tar-scripts.sh # Dowload and runing all services with ./start_prometheus.sh
+    ./instaler.sh # Dowload all Monitoring Stack
 
 
-    # Second scripts for following starts all service 
-    ./start_prometheus.sh #Opening Prometheus with Grafana UI in browser...
+    # Second scripts for delete or stop all service 
+    ./service-stop.sh
 
 
 ---
